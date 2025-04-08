@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rinzz Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            position: relative;
+            -webkit-text-stroke: 2px #fff;
+        }
+
+        .hello {
+            font-size: clamp(40px, 15vw, 200px);
+            font-weight: 900;
+            background: linear-gradient(45deg, 
+                #ff0000, #ff7300, #fffb00, 
+                #48ff00, #00ffd5, #002bff, 
+                #7a00ff, #ff00c8, #ff0000);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 400%;
+            animation: glow 20s linear infinite;
+            position: relative;
+            text-shadow: 0 0 20px rgba(255,255,255,0.5);
+        }
+
+        @keyframes glow {
+            0% { background-position: 0%; }
+            100% { background-position: 400%; }
+        }
+
+        /* 粒子效果 */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle, 
+                    rgba(255,255,255,0.1) 10%, 
+                    transparent 20%);
+            animation: particles 20s linear infinite;
+        }
+
+        @keyframes particles {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 3D立体效果 */
+        .hello::after {
+            content: 'HELLO (＾▽＾)';
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            color: rgba(255,255,255,0.2);
+            z-index: -1;
+            filter: blur(2px);
+        }
+
+        /* 移动设备优化 */
+        @media (max-width: 768px) {
+            .hello {
+                font-size: 80px;
+            }
+        }
+
+        /* 背景闪烁 */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(45deg, 
+                    transparent 48%, 
+                    rgba(255,255,255,0.1) 50%, 
+                    transparent 52%);
+            background-size: 5px 5px;
+            animation: bg 2s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes bg {
+            0% { background-position: 0 0; }
+            100% { background-position: 100px 100px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="hello">HELLO (＾▽＾)</h1>
+    </div>
+</body>
+</html>
